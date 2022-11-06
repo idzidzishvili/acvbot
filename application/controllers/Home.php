@@ -42,25 +42,16 @@ class Home extends CI_Controller
 			]);
 		}
 
-		// $filters = [
-		// 	[
-		// 		'pickupState' => 'DE',
-		// 		'deliveryState' => 'Any',
-		// 		'pickupZip' => '',
-		// 		'payout' => '',
-		// 	]
-		// ];
 
 
-		// *** GET DATA
 
+		// *** GET DATA (HTML) FROM https://transport.acvauctions.com/jobs/available.php
 		$curl = curl_init();
 		curl_setopt($curl, CURLOPT_URL, 'https://transport.acvauctions.com/jobs/available.php');
 		curl_setopt($curl, CURLOPT_HTTPHEADER, $this->headers);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		$output = curl_exec($curl);
 		curl_close($curl);
-
 		$this->load->helper('simple_html_dom');
 		$html = str_get_html($output);
 
@@ -69,6 +60,7 @@ class Home extends CI_Controller
 			return;
 		}
 
+		// parse data and save into array
 		$data = [];
 		foreach ($html->find('tr.rowheight') as $tr) {
 			$row = [];
@@ -92,8 +84,8 @@ class Home extends CI_Controller
 		}
 
 
+		// Filter array and save into new array (matchedArray)
 		$matchedArray = [];
-
 		foreach($data as $d){
 			foreach($filters as $f){
 				if(
@@ -111,6 +103,8 @@ class Home extends CI_Controller
 						'deliveryState' => $d['deliveryState'],
 						'payout'   	  => $d['payout'],
 					]);
+					// stage 
+					$this->stage($d['orderId2']);
 					break;
 				}
 			}
@@ -122,11 +116,10 @@ class Home extends CI_Controller
 
 
 
-	public function stage(){
+	public function stage($id){
 		$postfields=[
 			'Submit' => 'Select Jobs',
-			// 'selected[]' =>	845730,
-			'selected[]' =>	849378
+			'selected[]' => $id
 		];
 
 		$curl = curl_init();
@@ -137,7 +130,5 @@ class Home extends CI_Controller
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		$output = curl_exec($curl);
 		curl_close($curl);
-
-		echo $output;
 	}
 }

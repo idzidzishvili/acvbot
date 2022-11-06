@@ -157,7 +157,7 @@
 				success: function (data) {
 					var response = JSON.parse(data)
 					if(response.status == 'success'){
-						$('#search-result').html('');
+						// $('#search-result').html('');
 						if(response.data.length)
 							$('#result-head').removeClass('d-none')
 						else

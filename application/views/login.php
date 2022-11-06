@@ -9,19 +9,19 @@
          <img src="<?= base_url('assets/bot.png') ?>" class="bot-image">
       </div>
       <div class="col-md-6 vh100 d-flex justify-content-center align-items-center">
-         <form action="#" class="signin-form w-100">
+         <?php echo form_open(base_url('auth/login'), ['id' => 'search-form', 'class' => 'signin-form w-100']);?>
             <div class="form-group mb-3">
-               <label class="label" for="name">Username</label>
-               <input type="text" class="form-control" placeholder="Username" required="">
+               <label class="label" for="username">Username</label>
+               <input type="text" class="form-control" id="username" name="username" placeholder="Username" required="">
             </div>
             <div class="form-group mb-3">
                <label class="label" for="password">Password</label>
-               <input type="password" class="form-control" placeholder="Password" required="">
+               <input type="password" class="form-control" id="password" name="password" placeholder="Password" required="">
             </div>
             <div class="form-group">
                <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
             </div>
-         </form>
+         <?php echo form_close(); ?>
       </div>
    </div>
 </div>
