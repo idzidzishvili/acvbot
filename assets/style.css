@@ -1,0 +1,55 @@
+html, body, .vh100{
+   height: 100vh;
+}
+
+textarea:focus, 
+textarea.form-control:focus, 
+select:focus, 
+select:active, 
+input.form-control:focus, 
+input[type=text]:focus, 
+input[type=password]:focus, 
+input[type=email]:focus, 
+input[type=number]:focus, 
+[type=text].form-control:focus, 
+[type=password].form-control:focus, 
+[type=email].form-control:focus, 
+[type=tel].form-control:focus, 
+[contenteditable].form-control:focus {
+  box-shadow: none!important;
+  outline: none!important;
+}
+
+.bot-image{
+   max-width: 100%;
+   max-height: 700px;
+}
+
+.signin-form{
+   max-width: 450px;
+}
+
+div.form-row{
+   display: flex;
+}
+
+#filters input,
+#filters input:focus,
+#filters input:active{
+   margin:0;
+   padding: 0;
+   border:none;
+   outline: none;
+}
+#filters button.remove-filter{
+   border:none;
+   margin: 0;
+   padding: 0;
+   background: none;
+   color: #5f1313;
+   font-size: .9rem;
+}
+.bordered-bottom{
+   padding-bottom: 20px;
+   border-bottom: solid #bbbbbb 2px;;
+}
