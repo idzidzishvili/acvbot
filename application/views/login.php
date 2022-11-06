@@ -9,6 +9,9 @@
          <img src="<?= base_url('assets/bot.png') ?>" class="bot-image">
       </div>
       <div class="col-md-6 vh100 d-flex justify-content-center align-items-center">
+         <?php if($this->session->flashdata('loginResult')): ?>
+            <span class="text-danger"><?= $this->session->flashdata('loginResult')['message'] ?></span>
+         <?php endif;?>
          <?php echo form_open(base_url('auth/login'), ['id' => 'search-form', 'class' => 'signin-form w-100']);?>
             <div class="form-group mb-3">
                <label class="label" for="username">Username</label>
